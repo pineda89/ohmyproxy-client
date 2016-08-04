@@ -1,24 +1,24 @@
 package me.ohmyproxy.domain;
 
 
+import java.net.InetSocketAddress;
+
 public class Proxy {
     private String ip;
     private int port;
+    private String type;
     private String country;
     private long discoveryTime;
     private long lastCheckTime;
     private long rsTime;
     private String website;
 
-    public Proxy(String ip, int port) {
-        this.ip = ip;
-        this.port = port;
+    public String getType() {
+        return type;
     }
 
-    public Proxy(String ip, int port, String website) {
-        this.ip = ip;
-        this.port = port;
-        this.website = website;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getIp() {
@@ -108,4 +108,13 @@ public class Proxy {
                 ", website='" + website + '\'' +
                 '}';
     }
+
+    public java.net.Proxy getJavaNetProxy() {
+        return new java.net.Proxy(getJavaNetProxyType(), new InetSocketAddress(ip, port));
+    }
+
+    private java.net.Proxy.Type getJavaNetProxyType() {
+        return type.contains("SOCK") ? java.net.Proxy.Type.SOCKS : java.net.Proxy.Type.HTTP;
+    }
+
 }
