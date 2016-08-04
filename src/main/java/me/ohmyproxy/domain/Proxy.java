@@ -101,6 +101,7 @@ public class Proxy {
         return "Proxy{" +
                 "ip='" + ip + '\'' +
                 ", port=" + port +
+                ", type='" + type + '\'' +
                 ", country='" + country + '\'' +
                 ", discoveryTime=" + discoveryTime +
                 ", lastCheckTime=" + lastCheckTime +
