@@ -12,6 +12,10 @@ public class Config {
         loadPropertiesFromFile(filepath);
     }
 
+    private Config() {
+
+    }
+
     private void loadPropertiesFromFile(String filepath) throws Exception {
         properties = new Properties();
         InputStream input = null;
@@ -32,5 +36,16 @@ public class Config {
 
     public String getFindProxiesEndpoint() {
         return properties.getProperty("ohmyproxy.endpoint") + "/findProxies";
+    }
+
+    public static Config loadConfigurationWithEndpoint(String endpoint) {
+        Config cfg = new Config();
+        cfg.initializePropertiesWithEndpoint(endpoint);
+        return cfg;
+    }
+
+    private void initializePropertiesWithEndpoint(String endpoint) {
+        properties = new Properties();
+        properties.setProperty("ohmyproxy.endpoint", endpoint);
     }
 }

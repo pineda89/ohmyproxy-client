@@ -21,6 +21,14 @@ public class OhMyProxyClient {
         loadConfiguration();
     }
 
+    private OhMyProxyClient(String endpoint) {
+        loadConfiguration(endpoint);
+    }
+
+    private void loadConfiguration(String endpoint) {
+        config = Config.loadConfigurationWithEndpoint(endpoint);
+    }
+
     private void loadConfiguration() throws Exception {
         config = Config.loadConfiguration(FILEPATH);
     }
@@ -28,6 +36,13 @@ public class OhMyProxyClient {
     public synchronized static OhMyProxyClient getInstance() throws Exception {
         if (instance == null) {
             instance = new OhMyProxyClient();
+        }
+        return instance;
+    }
+
+    public synchronized static OhMyProxyClient getInstance(String endpoint) throws Exception {
+        if (instance == null) {
+            instance = new OhMyProxyClient(endpoint);
         }
         return instance;
     }
