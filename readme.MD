@@ -9,9 +9,15 @@ Perfect for:
   - Anonymous navigation
   - Check your services healthy from another site
 
-### Configuration
+### Import it!
 
-Modify the application.properties file with the endpoint needed. Default value is correct anyway
+```sh
+<dependency>
+  <groupId>com.github.pineda89</groupId>
+  <artifactId>ohmyproxy-client</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</dependency>
+```
 
 ### Usage
 

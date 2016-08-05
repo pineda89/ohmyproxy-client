@@ -11,15 +11,11 @@ import java.util.Random;
 
 public class OhMyProxyClient {
 
-    private static final String FILEPATH = "application.properties";
+    private static final String DEFAULT_ENDPOINT = "http://localhost:8080";
 
     private static OhMyProxyClient instance;
 
     private Config config;
-
-    private OhMyProxyClient() throws Exception {
-        loadConfiguration();
-    }
 
     private OhMyProxyClient(String endpoint) {
         loadConfiguration(endpoint);
@@ -29,13 +25,9 @@ public class OhMyProxyClient {
         config = Config.loadConfigurationWithEndpoint(endpoint);
     }
 
-    private void loadConfiguration() throws Exception {
-        config = Config.loadConfiguration(FILEPATH);
-    }
-
     public synchronized static OhMyProxyClient getInstance() throws Exception {
         if (instance == null) {
-            instance = new OhMyProxyClient();
+            instance = new OhMyProxyClient(DEFAULT_ENDPOINT);
         }
         return instance;
     }

@@ -14,22 +14,11 @@ public class ConfigTest {
     private static final String NOT_FILE_FOUND_FILEPATH = "abc.txt";
 
     @Test
-    public void notFileFoundTest() {
+    public void configLoadedFromEndpointTest() {
         try {
-            Config cfg = Config.loadConfiguration(NOT_FILE_FOUND_FILEPATH);
-            assertTrue(false);
-        } catch (Exception e) {
-            assertTrue(true);
-        }
-    }
-
-    @Test
-    public void correctFileConfigTest() {
-        try {
-            Config cfg = Config.loadConfiguration(VALID_FILEPATH);
+            Config cfg = Config.loadConfigurationWithEndpoint("http://localhost:8080");
             assertTrue(true);
         } catch (Exception e) {
-            e.printStackTrace();
             assertTrue(false);
         }
     }
